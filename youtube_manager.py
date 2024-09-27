@@ -35,7 +35,7 @@ def add_video(videos):
 
 def update_video(videos):
     list_all_videos(videos)
-    index=int(input("Enter a video number to update "))
+    index=int(input("Enter a video number to update: "))
     if 1<=index<=len(videos):
         name=input("enter new video name: ")
         time=input("enter the new duration: ")
@@ -47,7 +47,7 @@ def update_video(videos):
 
 def delete_video(videos):
     list_all_videos(videos)
-    index=int(input("Enter a video number to delete "))
+    index=int(input("Enter a video number to delete: "))
     if 1<=index<=len(videos):
         del videos[index-1]
         save_video_data(videos)
@@ -77,7 +77,7 @@ def main():
             case '5':
                 break
             case _:
-                print("Invalid Choice")
+                print("Invalid Choice!! \n")
                 
 if __name__=='__main__':
     main()
