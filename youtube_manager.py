@@ -27,8 +27,8 @@ def list_all_videos(videos):
     print('*'*70)
 
 def add_video(videos):
-    name= input("enter the name of the video:")
-    time=input("enter the time of the video:")
+    name= input("enter the name of the video: ")
+    time=input("enter the time of the video: ")
     videos.append({'name':name,'time':time})
     save_video_data(videos)
     line_break('ADDED SUCCESSFULLY!!')
