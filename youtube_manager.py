@@ -1,24 +1,59 @@
 import json
-    
+
+data_file_name='myvideo.txt'
+
+def line_break(text):
+    print('*'*70)
+    print(text)
+    print('*'*70)
+    print('\n')
+
 def load_data():
     try:
-        with open('myvideo.txt','r') as file:
+        with open(data_file_name,'r') as file:
             return json.load(file)
     except FileNotFoundError:
-        return [] 
+        return []
+    
+
+def save_video_data(videos):
+    with open(data_file_name,'w') as file:
+        return json.dump(videos,file)
 
 def list_all_videos(videos):
-    pass
+    print('*'*70)
+    for index, video in enumerate(videos,start=1):
+        print(f'{index}. {video['name']}, Duration:{video['time']} ')
+    print('*'*70)
 
 def add_video(videos):
-    pass
+    name= input("enter the name of the video:")
+    time=input("enter the time of the video:")
+    videos.append({'name':name,'time':time})
+    save_video_data(videos)
+    line_break('ADDED SUCCESSFULLY!!')
 
 def update_video(videos):
-    pass
+    list_all_videos(videos)
+    index=int(input("Enter a video number to update "))
+    if 1<=index<=len(videos):
+        name=input("enter new video name: ")
+        time=input("enter the new duration: ")
+        videos[index-1]={"name":name,"time":time}
+        save_video_data(videos)
+        line_break("UPDATED SUCCESSFULLY!!")
+    else:
+        line_break('INVALID SELECTION!!')
 
 def delete_video(videos):
-    pass
-
+    list_all_videos(videos)
+    index=int(input("Enter a video number to delete "))
+    if 1<=index<=len(videos):
+        del videos[index-1]
+        save_video_data(videos)
+        line_break("DELETED SUCCESSFULLY!!")
+    else:
+        line_break("INVALID SELECTION!!")
 
 def main():
     videos=load_data()
